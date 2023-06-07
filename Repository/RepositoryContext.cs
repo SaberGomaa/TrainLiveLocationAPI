@@ -1,13 +1,6 @@
 ﻿using Entites;
 using Entites.Models;
 using Microsoft.EntityFrameworkCore;
-using Repository.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Repository
@@ -22,8 +15,6 @@ namespace Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new TrainConfigration());
-            modelBuilder.ApplyConfiguration(new StationConfigration());
         }
         public DbSet<Admin> admins { get; set; }
         public DbSet<User> users { get; set; }

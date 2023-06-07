@@ -1,5 +1,7 @@
 ﻿using Contracts;
+using Swashbuckle.AspNetCore.Filters; 
 using Repository;
+using Microsoft.OpenApi.Models;
 
 namespace TraineAPI.Extentation
 {
@@ -17,6 +19,15 @@ namespace TraineAPI.Extentation
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSqlServer<RepositoryContext>((configuration.GetConnectionString("sqlConnection")));
+        }
+        public static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+
+                options.SchemaFilter<FormDataSchemaFilter>();
+            });
         }
     }
 }

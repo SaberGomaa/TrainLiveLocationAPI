@@ -16,7 +16,7 @@ namespace TraineAPI.Presentation.Controllers
 
     [ApiController]
     //(ControllerBase)which provides all necessary behavior for the derived class
-    [ApiExplorerSettings(IgnoreApi = true)]
+    //[ApiExplorerSettings(IgnoreApi = true)]
 
     public class AdminController : ControllerBase
     {

@@ -12,8 +12,8 @@ using Repository;
 namespace TraineAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20230425192525_v5")]
-    partial class v5
+    [Migration("20230607021518_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,9 @@ namespace TraineAPI.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("FirstTime")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -295,6 +298,9 @@ namespace TraineAPI.Migrations
                     b.Property<string>("NextStation")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
+
                     b.Property<int>("TrainId")
                         .HasColumnType("int");
 
@@ -313,6 +319,7 @@ namespace TraineAPI.Migrations
                             Longitude = 29.905233139369273,
                             Name = "Alexandria",
                             NextStation = "Sidi Gaber",
+                            Position = 0,
                             TrainId = 164
                         },
                         new
@@ -323,6 +330,7 @@ namespace TraineAPI.Migrations
                             Longitude = 29.942300551565349,
                             Name = "Sidi Gaber",
                             NextStation = "Damanhour",
+                            Position = 0,
                             TrainId = 164
                         },
                         new
@@ -333,6 +341,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.468689104431753,
                             Name = "Damanhour",
                             NextStation = "Tanta",
+                            Position = 0,
                             TrainId = 164
                         },
                         new
@@ -343,6 +352,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.995483984834241,
                             Name = "Tanta",
                             NextStation = "Birket el Sab",
+                            Position = 0,
                             TrainId = 164
                         },
                         new
@@ -353,6 +363,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.079936683751335,
                             Name = "Birket El Sab",
                             NextStation = "Qewaisna",
+                            Position = 0,
                             TrainId = 164
                         },
                         new
@@ -363,6 +374,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.139919904419259,
                             Name = "Qewaisna",
                             NextStation = "Banha",
+                            Position = 0,
                             TrainId = 164
                         },
                         new
@@ -373,6 +385,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.181093848594685,
                             Name = "Banha",
                             NextStation = "Ramsis(Cairo)",
+                            Position = 0,
                             TrainId = 164
                         },
                         new
@@ -383,6 +396,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.246724130095895,
                             Name = "Ramsis(Cairo)",
                             NextStation = "nextStation",
+                            Position = 0,
                             TrainId = 164
                         },
                         new
@@ -393,6 +407,7 @@ namespace TraineAPI.Migrations
                             Longitude = 29.905233139369273,
                             Name = "Alexandria",
                             NextStation = "Sidi Gaber",
+                            Position = 0,
                             TrainId = 914
                         },
                         new
@@ -403,6 +418,7 @@ namespace TraineAPI.Migrations
                             Longitude = 29.942300551565349,
                             Name = "Sidi Gaber",
                             NextStation = "Damanhour",
+                            Position = 0,
                             TrainId = 914
                         },
                         new
@@ -413,6 +429,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.468689104431753,
                             Name = "Damanhour",
                             NextStation = "Itay El Barud",
+                            Position = 0,
                             TrainId = 914
                         },
                         new
@@ -423,6 +440,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.67008637907707,
                             Name = "Itay El Barud",
                             NextStation = "Kafr El-Zayat",
+                            Position = 0,
                             TrainId = 914
                         },
                         new
@@ -433,6 +451,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.814538865795129,
                             Name = "Kafr El-Zayat",
                             NextStation = "Tanta",
+                            Position = 0,
                             TrainId = 914
                         },
                         new
@@ -443,6 +462,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.995483984834241,
                             Name = "Tanta",
                             NextStation = "Birket el Sab",
+                            Position = 0,
                             TrainId = 914
                         },
                         new
@@ -453,6 +473,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.079936683751335,
                             Name = "Birket El Sab",
                             NextStation = "Qewaisna",
+                            Position = 0,
                             TrainId = 914
                         },
                         new
@@ -463,6 +484,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.139919904419259,
                             Name = "Qewaisna",
                             NextStation = "Banha",
+                            Position = 0,
                             TrainId = 914
                         },
                         new
@@ -473,6 +495,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.181093848594685,
                             Name = "Banha",
                             NextStation = "Ramsis(Cairo)",
+                            Position = 0,
                             TrainId = 914
                         },
                         new
@@ -483,6 +506,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.246724130095895,
                             Name = "Ramsis(Cairo)",
                             NextStation = "nextStation",
+                            Position = 0,
                             TrainId = 914
                         },
                         new
@@ -493,6 +517,7 @@ namespace TraineAPI.Migrations
                             Longitude = 29.905233139369273,
                             Name = "Alexandria",
                             NextStation = "Sidi Gaber",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -503,6 +528,7 @@ namespace TraineAPI.Migrations
                             Longitude = 29.942300551565349,
                             Name = "Sidi Gaber",
                             NextStation = "Kafr El Dawwar",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -513,6 +539,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.130901427172223,
                             Name = " Kafr El Dawwar",
                             NextStation = "Abu Humus",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -523,6 +550,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.310392025322059,
                             Name = "Abu Humus",
                             NextStation = "Damanhour",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -533,6 +561,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.468689104431753,
                             Name = "Damanhour",
                             NextStation = "Itay El Barud",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -543,6 +572,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.67008637907707,
                             Name = "Itay El Barud",
                             NextStation = "Tawfiqia",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -553,6 +583,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.748217873741716,
                             Name = "Tawfiqia",
                             NextStation = "Kafr El-Zayat",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -563,6 +594,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.814538865795129,
                             Name = "Kafr El-Zayat",
                             NextStation = "Tanta",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -573,6 +605,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.995483984834241,
                             Name = "Tanta",
                             NextStation = "Birket el Sab",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -583,6 +616,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.079936683751335,
                             Name = "Birket El Sab",
                             NextStation = "Qewaisna",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -593,6 +627,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.139919904419259,
                             Name = "Qewaisna",
                             NextStation = "Banha",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -603,6 +638,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.181093848594685,
                             Name = "Banha",
                             NextStation = "Toukh",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -613,6 +649,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.198362936947632,
                             Name = "Toukh",
                             NextStation = "Qaha",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -623,6 +660,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.208928538794947,
                             Name = "Qaha",
                             NextStation = "Shubra El Kheima",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -633,6 +671,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.244513237455582,
                             Name = "Shubra El Kheima",
                             NextStation = "nextStation",
+                            Position = 0,
                             TrainId = 18
                         },
                         new
@@ -643,6 +682,7 @@ namespace TraineAPI.Migrations
                             Longitude = 29.905233139369273,
                             Name = "Alexandria",
                             NextStation = "Sidi Gaber",
+                            Position = 0,
                             TrainId = 916
                         },
                         new
@@ -653,6 +693,7 @@ namespace TraineAPI.Migrations
                             Longitude = 29.942300551565349,
                             Name = "Sidi Gaber",
                             NextStation = "Ramsis(Cairo)",
+                            Position = 0,
                             TrainId = 916
                         },
                         new
@@ -663,6 +704,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.246724130095895,
                             Name = "Ramsis(Cairo)",
                             NextStation = "nextStation",
+                            Position = 0,
                             TrainId = 916
                         },
                         new
@@ -673,6 +715,7 @@ namespace TraineAPI.Migrations
                             Longitude = 29.905233139369273,
                             Name = "Alexandria",
                             NextStation = "Sidi Gaber",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -683,6 +726,7 @@ namespace TraineAPI.Migrations
                             Longitude = 29.942300551565349,
                             Name = "Sidi Gaber",
                             NextStation = "Kafr El Dawwar",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -693,6 +737,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.130901427172223,
                             Name = " Kafr El Dawwar",
                             NextStation = "Abu Humus",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -703,6 +748,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.310392025322059,
                             Name = "Abu Humus",
                             NextStation = "Damanhour",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -713,6 +759,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.468689104431753,
                             Name = "Damanhour",
                             NextStation = "Itay El Barud",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -723,6 +770,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.67008637907707,
                             Name = "Itay El Barud",
                             NextStation = "Tawfiqia",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -733,6 +781,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.748217873741716,
                             Name = "Tawfiqia",
                             NextStation = "Kafr El-Zayat",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -743,6 +792,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.814538865795129,
                             Name = "Kafr El-Zayat",
                             NextStation = "Tanta",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -753,6 +803,7 @@ namespace TraineAPI.Migrations
                             Longitude = 30.995483984834241,
                             Name = "Tanta",
                             NextStation = "Birket el Sab",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -763,6 +814,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.079936683751335,
                             Name = "Birket El Sab",
                             NextStation = "Qewaisna",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -773,6 +825,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.139919904419259,
                             Name = "Qewaisna",
                             NextStation = "Banha",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -783,6 +836,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.181093848594685,
                             Name = "Banha",
                             NextStation = "Toukh",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -793,6 +847,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.198362936947632,
                             Name = "Toukh",
                             NextStation = "Qaha",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -803,6 +858,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.208928538794947,
                             Name = "Qaha",
                             NextStation = "Qelyoub",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -813,6 +869,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.22807432746081,
                             Name = "Qelyoub",
                             NextStation = "Shubra El Kheima",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -823,6 +880,7 @@ namespace TraineAPI.Migrations
                             Longitude = 31.244513237455582,
                             Name = "Shubra El Kheima",
                             NextStation = "nextStation",
+                            Position = 0,
                             TrainId = 24
                         },
                         new
@@ -833,6 +891,7 @@ namespace TraineAPI.Migrations
                             Longitude = 0.0,
                             Name = "name",
                             NextStation = "nextStation",
+                            Position = 0,
                             TrainId = 0
                         });
                 });
@@ -857,6 +916,9 @@ namespace TraineAPI.Migrations
                     b.Property<bool>("ScanedOrNot")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("StationArrivalId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("TakeOffDate")
                         .HasColumnType("datetime2");
 
@@ -872,10 +934,27 @@ namespace TraineAPI.Migrations
                     b.Property<string>("TrainNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserJop")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserToken")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("StationArrivalId");
 
                     b.HasIndex("TrainId");
 
@@ -914,6 +993,9 @@ namespace TraineAPI.Migrations
                     b.Property<string>("TrainNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("TrainTime")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.ToTable("trains");
@@ -928,7 +1010,8 @@ namespace TraineAPI.Migrations
                             Driver = "",
                             NumOfSeat = 880,
                             NumOfTrainCars = 11,
-                            TrainNumber = "164"
+                            TrainNumber = "164",
+                            TrainTime = 0.0
                         },
                         new
                         {
@@ -939,7 +1022,8 @@ namespace TraineAPI.Migrations
                             Driver = "",
                             NumOfSeat = 572,
                             NumOfTrainCars = 10,
-                            TrainNumber = "914"
+                            TrainNumber = "914",
+                            TrainTime = 0.0
                         },
                         new
                         {
@@ -950,7 +1034,8 @@ namespace TraineAPI.Migrations
                             Driver = "",
                             NumOfSeat = 880,
                             NumOfTrainCars = 11,
-                            TrainNumber = "18"
+                            TrainNumber = "18",
+                            TrainTime = 0.0
                         },
                         new
                         {
@@ -961,7 +1046,8 @@ namespace TraineAPI.Migrations
                             Driver = "",
                             NumOfSeat = 10,
                             NumOfTrainCars = 572,
-                            TrainNumber = "916"
+                            TrainNumber = "916",
+                            TrainTime = 0.0
                         },
                         new
                         {
@@ -972,7 +1058,8 @@ namespace TraineAPI.Migrations
                             Driver = "",
                             NumOfSeat = 880,
                             NumOfTrainCars = 10,
-                            TrainNumber = "24"
+                            TrainNumber = "24",
+                            TrainTime = 0.0
                         });
                 });
 
@@ -1012,15 +1099,13 @@ namespace TraineAPI.Migrations
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StationId")
-                        .HasColumnType("int");
+                    b.Property<string>("TokenForNotifications")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TrainId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StationId");
 
                     b.HasIndex("TrainId");
 
@@ -1140,6 +1225,10 @@ namespace TraineAPI.Migrations
 
             modelBuilder.Entity("Entites.Ticket", b =>
                 {
+                    b.HasOne("Entites.Station", "StationArrival")
+                        .WithMany("Tickets")
+                        .HasForeignKey("StationArrivalId");
+
                     b.HasOne("Entites.Train", "Train")
                         .WithMany("tickets")
                         .HasForeignKey("TrainId")
@@ -1152,6 +1241,8 @@ namespace TraineAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("StationArrival");
+
                     b.Navigation("Train");
 
                     b.Navigation("User");
@@ -1159,15 +1250,9 @@ namespace TraineAPI.Migrations
 
             modelBuilder.Entity("Entites.User", b =>
                 {
-                    b.HasOne("Entites.Station", "Station")
-                        .WithMany("Users")
-                        .HasForeignKey("StationId");
-
                     b.HasOne("Entites.Train", "Train")
                         .WithMany("users")
                         .HasForeignKey("TrainId");
-
-                    b.Navigation("Station");
 
                     b.Navigation("Train");
                 });
@@ -1190,7 +1275,7 @@ namespace TraineAPI.Migrations
 
             modelBuilder.Entity("Entites.Station", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("Entites.Train", b =>

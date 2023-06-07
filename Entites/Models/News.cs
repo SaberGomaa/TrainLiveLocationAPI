@@ -9,7 +9,6 @@ namespace Entites.Models
         public DateTime? date { get; set; } = DateTime.Now;
         public string? ContentOfPost { get; set; }
 
-
         [ForeignKey(nameof(Admin))]
         public int? AdminId { get; set; }
         public virtual Admin? Admin { get; set; }

@@ -4,9 +4,7 @@ using Entites.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore;
 using Shared.DTOs;
-using System.ComponentModel.DataAnnotations;
 
 namespace TraineAPI.Presentation.Controllers
 {
@@ -56,32 +54,32 @@ namespace TraineAPI.Presentation.Controllers
 
 
         [HttpPost(Name = "CreateNew")]
-        public IActionResult CreateNew(IFormFile image, string content)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult CreateNew( [FromForm] NewsCreateDto News )
         {
-            News News = new News();
+            //News News = new News();
             ArgumentNullException.ThrowIfNull(News);
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
 
-            if (image == null || image.Length == 0)
+            if (News.image == null || News.image.Length == 0)
                 return BadRequest("Please select an image file to upload.");
 
-            string fileName = image.FileName;
+            string fileName = News.image.FileName;
             //string fullPath = Path.Combine(@"h:\root\home\saberelsayed-001\www\trainapi\dashborad\", fileName);
 
-            var path = $@"h:\root\home\saberelsayed-001\www\test\" + fileName;
+            var path = $@"h:\root\home\trainlocationapi-001\www\site1\wwwroot\newsimages\" + fileName;
 
             using (var stream = new FileStream(path, FileMode.Create))
             {
-                image.CopyTo(stream);
+                News.image.CopyTo(stream);
             }
 
             //image.CopyTo(new FileStream(fullPath, FileMode.Create));
-
-            News.ContentOfPost = content;
-            News.Img = "NewsImages/" + fileName;
-
             var NewsEntity = _mapper.Map<News>(News);
+            
+            NewsEntity.Img = "http://trainlocationapi-001-site1.atempurl.com/wwwroot/newsimages/" + fileName;
 
             _repository.news.CreateNews(NewsEntity);
             _repository.Save();

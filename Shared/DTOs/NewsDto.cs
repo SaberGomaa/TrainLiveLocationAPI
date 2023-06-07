@@ -11,13 +11,14 @@ namespace Shared.DTOs
 
     public record NewsCreateDto
     {
-        public string? Img { get; set; }
-        public DateTime? date { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "ContentOfPost is a required field.")]
         public string ContentOfPost { get; set; }
+        public IFormFile image { get; set; } 
 
     }
-    public record NewsDto(int Id, string? Img, DateTime? date, string? ContentOfPost);
+
+
+    public record NewsDto(int Id, string Img, DateTime? date, string? ContentOfPost);
     public record NewsUpdateDto : NewsCreateDto;
 }
