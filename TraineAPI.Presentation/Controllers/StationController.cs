@@ -36,21 +36,7 @@ namespace TraineAPI.Presentation.Controllers
             var StationDTO = _mapper.Map<IEnumerable<StationDto>>(Station);
             return Ok(StationDTO);
         }
-
-
         
-        [HttpGet(Name = "GetStationsForOneTrain")]
-        public IActionResult GetStationsForOneTrain(int trainId)
-        {
-            Station t = _repository.Station.CheckTrainExist(trainId);
-            if (t == null)
-                return BadRequest($"there is no train with id{trainId}");
-
-            var Station = _repository.Station.GetStationsForOneTrain(trainId);
-            var StationDTO = _mapper.Map<IEnumerable<StatioForOneTrainDto>>(Station);
-            return Ok(StationDTO);
-        }
-
 
         [HttpGet(Name = "GetStationById")]
         public IActionResult GetStationById(int Id)

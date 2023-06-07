@@ -18,10 +18,11 @@ namespace Entites
         public double Longitude { get; set; }
         public double Latitude { get; set; }
 
-        [ForeignKey(nameof(Train))]
-        public int TrainId { get; set; }
-        public virtual Train? Train { get; set; }
         public ICollection<Ticket>? Tickets { get; set; }
+
+        //[ForeignKey(nameof(Train))]
+        //public int TrainId { get; set; }
+        //public virtual Train? Train { get; set; }
 
         //public ICollection<User>? Users { get; set; }
     }

@@ -11,8 +11,6 @@ namespace Contracts
     {
         IEnumerable<Station> GetAllStations();
         Station? GetStationById(int ID);
-        Station? CheckTrainExist(int TrainId);
-        IEnumerable<Station> GetStationsForOneTrain(int TrainId);
 
         void CreateStation(Station station);
         void DeleteStation(Station station);

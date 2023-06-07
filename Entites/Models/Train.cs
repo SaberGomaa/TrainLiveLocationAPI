@@ -21,7 +21,7 @@ namespace Entites
         public ICollection<LiveLocation> liveLocations { get; set; }
 
         public ICollection<User>?users { get; set; }
-        public ICollection <Station>?stations { get; set; }
+        //public ICollection <Station>?stations { get; set; }
         public ICollection <Ticket>?tickets { get; set; }
 
 

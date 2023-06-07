@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,6 @@ namespace Shared.DTOs
 {
     public record AdminWithoutchiledForManipulationDto
     {
-
         [Required]
         public string Name { get; set; } = string.Empty;
         [Required]
@@ -21,9 +21,10 @@ namespace Shared.DTOs
         [Required]
         public string AdminDegree { get; set; } = string.Empty;
         public bool FirstTime { get; set; } = true;
+        public IFormFile image { get; set; }
 
     }
-    public record AdminDto(int Id, string? Name, string? Password, string? Phone, string? Email, bool FirstTime, string? AdminDegree);
+    public record AdminDto(int Id, string? Name, string image, string? Password, string? Phone, string? Email, bool FirstTime, string? AdminDegree);
 
     public record AdminCreationDto : AdminWithoutchiledForManipulationDto;
 

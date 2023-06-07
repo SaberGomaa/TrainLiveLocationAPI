@@ -53,12 +53,11 @@ namespace TraineAPI.Presentation.Controllers
 
 
 
-        [HttpPost(Name = "CreateNew")]
+        [HttpPost(Name = "CreateNews")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateNew( [FromForm] NewsCreateDto News )
+        public IActionResult CreateNews( [FromForm] NewsCreateDto News )
         {
-            //News News = new News();
             ArgumentNullException.ThrowIfNull(News);
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
@@ -89,22 +88,22 @@ namespace TraineAPI.Presentation.Controllers
         }
 
 
-        [HttpPost(Name = "CreateNews")]
-        public IActionResult CreateNews([FromBody] NewsCreateDto News)
-        {
-            ArgumentNullException.ThrowIfNull(News);
+        //[HttpPost(Name = "CreateNews")]
+        //public IActionResult CreateNews([FromBody] NewsCreateDto News)
+        //{
+        //    ArgumentNullException.ThrowIfNull(News);
 
-            if (!ModelState.IsValid)
-                return UnprocessableEntity(ModelState);
+        //    if (!ModelState.IsValid)
+        //        return UnprocessableEntity(ModelState);
 
 
-            var NewsEntity = _mapper.Map<News>(News);
-            _repository.news.CreateNews(NewsEntity);
-            _repository.Save();
-            var NewsToReturn = _mapper.Map<NewsDto>(NewsEntity);
-            return CreatedAtRoute("GetNewsById", new { id = NewsToReturn.Id }, NewsToReturn);
+        //    var NewsEntity = _mapper.Map<News>(News);
+        //    _repository.news.CreateNews(NewsEntity);
+        //    _repository.Save();
+        //    var NewsToReturn = _mapper.Map<NewsDto>(NewsEntity);
+        //    return CreatedAtRoute("GetNewsById", new { id = NewsToReturn.Id }, NewsToReturn);
 
-        }
+        //}
 
 
         [HttpDelete(Name = "DeleteNews")]

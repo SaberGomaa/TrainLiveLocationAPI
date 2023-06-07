@@ -9,6 +9,7 @@ using Contracts;
 using Shared.DTOs;
 using AutoMapper;
 using Entites;
+using Entites.Models;
 
 namespace TraineAPI.Presentation.Controllers
 {
@@ -115,14 +116,29 @@ namespace TraineAPI.Presentation.Controllers
         }
 
         [HttpPost(Name = "CreateAdmin")]
-        public IActionResult CreateAdmin([FromBody] AdminCreationDto admin)
+        public IActionResult CreateAdmin([FromForm] AdminCreationDto admin)
         {
             ArgumentNullException.ThrowIfNull(admin);
 
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
 
+            if (admin.image == null || admin.image.Length == 0)
+                return BadRequest("Please select an image file to upload.");
+
+            string fileName = admin.image.FileName;
+            //string fullPath = Path.Combine(@"h:\root\home\saberelsayed-001\www\trainapi\dashborad\", fileName);
+
+            var path = $@"h:\root\home\trainlocationapi-001\www\site1\wwwroot\adminimages\" + fileName;
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                admin.image.CopyTo(stream);
+            }
+
             var entitAdminEntity = _mapper.Map<Admin>(admin);
+            entitAdminEntity.image = "http://trainlocationapi-001-site1.atempurl.com/wwwroot/adminimages/" + fileName;
+
             _repository.Admin.CreateAdmin(entitAdminEntity);
 
             _repository.Save();
