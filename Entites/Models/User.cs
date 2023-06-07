@@ -16,6 +16,7 @@ namespace Entites
         public string? Email { get; set; }
         public string? Phone { get; set; }
         public string? Password { get; set; }
+        public string? img { get; set; }
         public string? Jop { get; set; }
         public string? Address { get; set; }
         public string? Gender { get; set; }

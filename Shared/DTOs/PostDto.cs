@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
@@ -24,7 +25,9 @@ namespace Shared.DTOs
         public string UserPhone { get; set; } 
         public int? AdminId { get; set; }
         public int UserId { get; set; }
-     
+        public IFormFile image { get; set; }
+
+
     }
 
     public record PostDto(int Id , string Content , int TrainNumber , bool Critical  , string? Img, int UserId, string UserPhone, DateTime Date, int? AdminId, string UserName, string imgId);

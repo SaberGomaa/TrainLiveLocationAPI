@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace Shared.DTOs
 
         public string UserName { get; set; }
         public string UserPhone { get; set; }
+        public IFormFile image { get; set; }
+
 
     }
 
