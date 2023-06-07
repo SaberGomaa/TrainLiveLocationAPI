@@ -28,9 +28,9 @@ namespace Entites
 
        
 
-        [ForeignKey(nameof(Admin))]
-        public int? AdminId { get; set; }
-        public virtual Admin? Admin { get; set; }
+        //[ForeignKey(nameof(Admin))]
+        //public int? AdminId { get; set; }
+        //public virtual Admin? Admin { get; set; }
 
         [ForeignKey(nameof(User))]
         public int UserId { get; set; }

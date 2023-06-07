@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Contracts;
 using Entites;
+using Entites.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared.DTOs;
 using System;
@@ -79,23 +81,34 @@ namespace TraineAPI.Presentation.Controllers
 
 
         [HttpPost(Name = "createPost")]
-        public ActionResult CreatePost([FromBody] PostCreationDto post)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult CreatePost([FromForm] PostCreationDto post)
         {
             ArgumentNullException.ThrowIfNull(post);
-
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
 
+            if (post.image == null || post.image.Length == 0)
+                return BadRequest("Please select an image file to upload.");
+
+            string fileName = post.image.FileName;
+            var path = $@"h:\root\home\trainlocationapi-001\www\site1\wwwroot\postimages\" + fileName;
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                post.image.CopyTo(stream);
+            }
+
             var postEntity = _mapper.Map<Post>(post);
+            postEntity.Img = "http://trainlocationapi-001-site1.atempurl.com/wwwroot/postimages/" + fileName;
             _repository.Post.CreatePost(postEntity);
 
             _repository.Save();
             var ReturnedPost= _mapper.Map<PostDto>(postEntity);
             return CreatedAtRoute("GetPost", new { Id = ReturnedPost.Id }, ReturnedPost);
-
         }
 
-       
 
         [HttpPut("{Id:int}", Name = "UpdatePost")]
         public IActionResult UpdatePost([FromBody] PostUpdateDto post, int Id)
@@ -118,7 +131,6 @@ namespace TraineAPI.Presentation.Controllers
         [HttpDelete("{Id:int}", Name = "DeletePost")]
         public IActionResult DeletePost(int Id)
         {
-
             var comments = _repository.Comment.GetCommentsByPostId(Id);
             var reports = _repository.Report.GetAllReports().Where(c => c.UserId.Equals(Id));
 
@@ -143,6 +155,5 @@ namespace TraineAPI.Presentation.Controllers
             _repository.Save();
             return Ok($"Post with id {Id} deleted");
         }
-
     }
 }

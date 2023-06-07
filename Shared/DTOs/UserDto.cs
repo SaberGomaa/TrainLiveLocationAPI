@@ -9,7 +9,6 @@ namespace Shared.DTOs
         [Required(ErrorMessage = "user name is a required field.")]
         [MaxLength(30, ErrorMessage = "Maximum length for the Name is 30 characters.")]
         public string? Name { get; init; }
-        public string? img { get; set; }
         [EmailAddress]
         [Required(ErrorMessage = "Email is a required field.")]
         public string? Email { get; init; }

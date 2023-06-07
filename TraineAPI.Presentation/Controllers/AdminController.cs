@@ -10,6 +10,7 @@ using Shared.DTOs;
 using AutoMapper;
 using Entites;
 using Entites.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace TraineAPI.Presentation.Controllers
 {
@@ -116,6 +117,8 @@ namespace TraineAPI.Presentation.Controllers
         }
 
         [HttpPost(Name = "CreateAdmin")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult CreateAdmin([FromForm] AdminCreationDto admin)
         {
             ArgumentNullException.ThrowIfNull(admin);

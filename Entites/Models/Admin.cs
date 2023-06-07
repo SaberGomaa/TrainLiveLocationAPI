@@ -22,8 +22,8 @@ namespace Entites
         public bool FirstTime { get; set; } = true;
         public ICollection<News>? News { get; set; }
 
-        public ICollection<Comment>? comments { get; set; }
-        public ICollection<Post>? posts { get; set; }
+        //public ICollection<Comment>? comments { get; set; }
+        //public ICollection<Post>? posts { get; set; }
 
     }
 }

@@ -27,8 +27,8 @@ namespace Entites
         public int PostId { get; set; }
         public virtual Post? Post { get; set; }
 
-        [ForeignKey(nameof(Admin))]
-        public int? AdminId { get; set; }
-        public virtual Admin? Admin { get; set; }
+        //[ForeignKey(nameof(Admin))]
+        //public int? AdminId { get; set; }
+        //public virtual Admin? Admin { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace Shared.DTOs
 
     }
 
-    public record CommentDto( string? Content ,string? Img , string userName, string userPhone , int? userId, int? postId , int? adminId );
+    public record CommentDto( string? Content ,string? Img , string userName, string userPhone , int? userId, int? postId  );
     public record ReturnedComment(int Id, string? Content, string? Img, DateTime Date , string userName, string userPhone, int? userId, int? postId);
 
     public record CommentCreationDto : CommentWithoutchiledForManipulationDto;

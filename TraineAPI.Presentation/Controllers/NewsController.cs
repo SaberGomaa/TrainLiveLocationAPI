@@ -51,8 +51,6 @@ namespace TraineAPI.Presentation.Controllers
             }
         }
 
-
-
         [HttpPost(Name = "CreateNews")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
