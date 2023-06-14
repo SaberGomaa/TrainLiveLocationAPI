@@ -18,7 +18,7 @@ namespace TraineAPI.Presentation.Controllers
 
     [ApiController]
     //(ControllerBase)which provides all necessary behavior for the derived class
-    //[ApiExplorerSettings(IgnoreApi = true)]
+    [ApiExplorerSettings(IgnoreApi = true)]
 
     public class AdminController : ControllerBase
     {
@@ -149,6 +149,41 @@ namespace TraineAPI.Presentation.Controllers
             return CreatedAtRoute("GetAdmin", new { Id = adminToReturn.Id }, adminToReturn);
         }
 
+        [HttpPut("{Id:int}", Name = "UpdateAdmin")]
+        public IActionResult UpdateAdmin([FromForm] AdminUpdateDto admin, int Id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest($"Admin with id  {Id}  already has deleted");
+            }
+            else
+            {
+                var SelectedAdmin = _repository.Admin.GetAdminById(Id);
+                ArgumentNullException.ThrowIfNull(SelectedAdmin);
+
+                if (admin.image == null || admin.image.Length == 0)
+                    return BadRequest("Please select an image file to upload.");
+
+                string fileName = admin.image.FileName;
+                //string fullPath = Path.Combine(@"h:\root\home\saberelsayed-001\www\trainapi\dashborad\", fileName);
+
+                var path = $@"h:\root\home\trainlocationapi-001\www\site1\wwwroot\adminimages\" + fileName;
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    admin.image.CopyTo(stream);
+                }
+
+
+                var AdminEntity = _mapper.Map(admin, SelectedAdmin);
+                AdminEntity.image = "http://trainlocationapi-001-site1.atempurl.com/wwwroot/adminimages/" + fileName;
+
+                _repository.Admin.UpdateAdmin(AdminEntity);
+                _repository.Save();
+                return Ok($"the Admin with id {Id} has been updeted successfully");
+            }
+        }
+
         [HttpDelete("{Id:int}", Name = "DeleteAdmin")]
         public IActionResult DeleteAdmin(int Id)
         {
@@ -159,23 +194,6 @@ namespace TraineAPI.Presentation.Controllers
             return Ok($"Admin with id {Id} deleted");
         }
 
-        [HttpPut("{Id:int}", Name = "UpdateAdmin")]
-        public IActionResult UpdateAdmin([FromBody] AdminUpdateDto admin, int Id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest($"Admin with id  {Id}  already has deleted");
-            }
-            else
-            {
-                var SelectedAdmin = _repository.Admin.GetAdminById(Id);
-                ArgumentNullException.ThrowIfNull(SelectedAdmin);
-                var AdminEntity = _mapper.Map(admin, SelectedAdmin);
-                _repository.Admin.UpdateAdmin(AdminEntity);
-                _repository.Save();
-                return Ok($"the Admin with id {Id} has been updeted successfully");
-            }
-        }
 
     }
 }
