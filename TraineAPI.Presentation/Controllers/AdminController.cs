@@ -1,15 +1,8 @@
-﻿using System.Diagnostics.Contracts;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 using Contracts;
 using Shared.DTOs;
 using AutoMapper;
 using Entites;
-using Entites.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace TraineAPI.Presentation.Controllers
