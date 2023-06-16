@@ -85,6 +85,39 @@ namespace TraineAPI.Presentation.Controllers
 
         }
 
+        [HttpPut(Name = "updateNews")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult updateNews(int id , [FromForm] NewsCreateDto News)
+        {
+            ArgumentNullException.ThrowIfNull(News);
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
+
+            if (News.image == null || News.image.Length == 0)
+                return BadRequest("Please select an image file to upload.");
+
+            string fileName = News.image.FileName;
+            //string fullPath = Path.Combine(@"h:\root\home\saberelsayed-001\www\trainapi\dashborad\", fileName);
+
+            var path = $@"h:\root\home\trainlocationapi-001\www\site1\wwwroot\newsimages\" + fileName;
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                News.image.CopyTo(stream);
+            }
+
+            //image.CopyTo(new FileStream(fullPath, FileMode.Create));
+            var NewsEntity = _mapper.Map<News>(News);
+
+            NewsEntity.Img = "http://trainlocationapi-001-site1.atempurl.com/wwwroot/newsimages/" + fileName;
+
+            _repository.news.UpdateNews(NewsEntity);
+            _repository.Save();
+            var NewsToReturn = _mapper.Map<NewsDto>(NewsEntity);
+            return CreatedAtRoute("GetNewsById", new { id = NewsToReturn.Id }, NewsToReturn);
+
+        }
 
         //[HttpPost(Name = "CreateNews")]
         //public IActionResult CreateNews([FromBody] NewsCreateDto News)
@@ -115,15 +148,15 @@ namespace TraineAPI.Presentation.Controllers
         }
 
 
-        [HttpPut(Name = "UpdateNews")]
-        public IActionResult UpdateNews([FromBody] NewsUpdateDto news, int NewsId)
-        {
-            var SelectedNews = _repository.news.GetNewsById(NewsId);
-            ArgumentNullException.ThrowIfNull(SelectedNews);
-            var NewsEntity = _mapper.Map(news, SelectedNews);
-            _repository.news.UpdateNews(NewsEntity);
-            _repository.Save();
-            return Ok($"the News with id {NewsId} has been updeted successfully");
-        }
+        //[HttpPut(Name = "UpdateNews")]
+        //public IActionResult UpdateNews([FromBody] NewsUpdateDto news, int NewsId)
+        //{
+        //    var SelectedNews = _repository.news.GetNewsById(NewsId);
+        //    ArgumentNullException.ThrowIfNull(SelectedNews);
+        //    var NewsEntity = _mapper.Map(news, SelectedNews);
+        //    _repository.news.UpdateNews(NewsEntity);
+        //    _repository.Save();
+        //    return Ok($"the News with id {NewsId} has been updeted successfully");
+        //}
     }
 }
