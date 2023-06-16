@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Contracts;
+using Entites;
 using Entites.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -86,10 +87,11 @@ namespace TraineAPI.Presentation.Controllers
         }
 
         [HttpPut(Name = "updateNews")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult updateNews(int id , [FromForm] NewsCreateDto News)
+        public IActionResult updateNews( [FromForm] NewsCreateDto News , int id)
         {
+
+            var news = _repository.news.GetNewsById(id);
+
             ArgumentNullException.ThrowIfNull(News);
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
@@ -108,14 +110,16 @@ namespace TraineAPI.Presentation.Controllers
             }
 
             //image.CopyTo(new FileStream(fullPath, FileMode.Create));
-            var NewsEntity = _mapper.Map<News>(News);
 
-            NewsEntity.Img = "http://trainlocationapi-001-site1.atempurl.com/wwwroot/newsimages/" + fileName;
+            var newsEntity = _mapper.Map(News, news);
 
-            _repository.news.UpdateNews(NewsEntity);
+
+            newsEntity.Img = "http://trainlocationapi-001-site1.atempurl.com/wwwroot/newsimages/" + fileName;
+
+            _repository.news.UpdateNews(newsEntity);
             _repository.Save();
-            var NewsToReturn = _mapper.Map<NewsDto>(NewsEntity);
-            return CreatedAtRoute("GetNewsById", new { id = NewsToReturn.Id }, NewsToReturn);
+            var NewsToReturn = _mapper.Map<NewsDto>(newsEntity);
+            return Ok($"the News with id {id} has been updeted successfully");
 
         }
 
