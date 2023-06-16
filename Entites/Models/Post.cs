@@ -15,7 +15,6 @@ namespace Entites
         public int TrainNumber { get; set; }
         public bool Critical { get; set; }
         public string? Img { get; set; }
-
         public DateTime date { get; set; } = DateTime.Now;
         public string ImgId { get; set; }
         public string UserName { get; set; }

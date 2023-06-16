@@ -8,6 +8,7 @@ namespace Entites.Models
         public string? Img { get; set; }
         public DateTime? date { get; set; } = DateTime.Now;
         public string? ContentOfPost { get; set; }
+        public string? Title { get; set; }
 
         [ForeignKey(nameof(Admin))]
         public int? AdminId { get; set; }

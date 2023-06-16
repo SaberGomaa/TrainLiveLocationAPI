@@ -22,10 +22,9 @@ namespace Shared.DTOs
          public string UserName { get; set; }
         public string UserPhone { get; set; } 
         public int UserId { get; set; }
-        public IFormFile image { get; set; }
+        //public IFormFile image { get; set; }
     }
-
-    public record PostDto(int Id , string Content , int TrainNumber , bool Critical  , string? Img, int UserId, string UserPhone, DateTime Date, string UserName, string imgId);
+    public record PostDto(int Id , string Content , int TrainNumber , bool Critical  , int UserId, string UserPhone, DateTime Date, string UserName, string imgId);
     public record PostCreationDto : PostWithoutchiledForManipulationDto;
     public record PostUpdateDto : PostWithoutchiledForManipulationDto;
 }
