@@ -100,40 +100,27 @@ namespace TraineAPI.Presentation.Controllers
             }
         }
 
+
         [HttpPost(Name = "CreateUser")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateUser([FromForm] UserCreationDto user)
+        public IActionResult CreateUser([FromBody] UserCreationDto user)
         {
             ArgumentNullException.ThrowIfNull(user);
 
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
-            
+
             User s = _repository.User.CheckEmail(user.Email);
+
             User x = _repository.User.CheckPhone(user.Phone);
-
-
-            if (user.image == null || user.image.Length == 0)
-                return BadRequest("Please select an image file to upload.");
-
-            string fileName = user.image.FileName;
-
-            var path = $@"h:\root\home\trainlocationapi-001\www\site1\wwwroot\usersimages\" + fileName;
-
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                user.image.CopyTo(stream);
-            }
-
-            if (s != null || x !=null)
+            if (s != null || x != null)
             {
                 return BadRequest("UserEmail or UserPhone has already been exist!");
             }
+
             else
             {
+
                 var UserEntity = _mapper.Map<User>(user);
-                UserEntity.img = "http://trainlocationapi-001-site1.atempurl.com/wwwroot/usersimages/" + fileName;
                 _repository.User.CreateUser(UserEntity);
                 _repository.Save();
                 var UserToReturn = _mapper.Map<userDto>(UserEntity);
@@ -141,6 +128,50 @@ namespace TraineAPI.Presentation.Controllers
             }
 
         }
+
+        //[HttpPost(Name = "CreateUser")]
+        //[ProducesResponseType(StatusCodes.Status201Created)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public IActionResult CreateUser([FromForm] UserCreationDto user)
+        //{
+        //    ArgumentNullException.ThrowIfNull(user);
+
+        //    if (!ModelState.IsValid)
+        //        return UnprocessableEntity(ModelState);
+
+        //    User s = _repository.User.CheckEmail(user.Email);
+        //    User x = _repository.User.CheckPhone(user.Phone);
+
+
+        //    if (user.image == null || user.image.Length == 0)
+        //        return BadRequest("Please select an image file to upload.");
+
+        //    string fileName = user.image.FileName;
+
+        //    var path = $@"h:\root\home\trainlocationapi-001\www\site1\wwwroot\usersimages\" + fileName;
+
+        //    using (var stream = new FileStream(path, FileMode.Create))
+        //    {
+        //        user.image.CopyTo(stream);
+        //    }
+
+        //    if (s != null || x !=null)
+        //    {
+        //        return BadRequest("UserEmail or UserPhone has already been exist!");
+        //    }
+        //    else
+        //    {
+        //        var UserEntity = _mapper.Map<User>(user);
+        //        UserEntity.img = "http://trainlocationapi-001-site1.atempurl.com/wwwroot/usersimages/" + fileName;
+        //        _repository.User.CreateUser(UserEntity);
+        //        _repository.Save();
+        //        var UserToReturn = _mapper.Map<userDto>(UserEntity);
+        //        return CreatedAtRoute("GetUserById", new { id = UserToReturn.Id }, UserToReturn);
+        //    }
+
+        //}
+
+
 
         [HttpPut(Name = "UpdateUser")]
         public IActionResult UpdateUser([FromBody] UserUpdateDto user, int userId)

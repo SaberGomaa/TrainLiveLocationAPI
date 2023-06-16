@@ -39,11 +39,11 @@ namespace Shared.DTOs
         [Required(ErrorMessage = "Role is a required field.")]
         public string? Role { get; init; }
         public string? TokenForNotifications { get; set; }
-        public IFormFile image { get; set; }
+        //public IFormFile image { get; set; }
 
     }
 
-    public record userDto(int Id, string Name, string Email, string Phone,string img , string Password, string Jop, string Address, string Gender, string BirthDate, string? TokenForNotifications, string Role);
+    public record userDto(int Id, string Name, string Email, string Phone, string Password, string Jop, string Address, string Gender, string BirthDate, string? TokenForNotifications, string Role);
     public record userloginDTO(string Name);
     public record userTokenDTO(int Id , string TokenForNotifications);
     public record DoctorDTO(int Id, string Name, string Email, string Phone);
