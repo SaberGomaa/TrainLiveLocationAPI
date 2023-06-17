@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository;
 
@@ -11,9 +12,11 @@ using Repository;
 namespace TraineAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20230617104143_v5")]
+    partial class v5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,24 +187,6 @@ namespace TraineAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("railway");
-                });
-
-            modelBuilder.Entity("Entites.Models.TrainInStationTime", b =>
-                {
-                    b.Property<int>("TrainId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StationId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TrainTime")
-                        .HasColumnType("float");
-
-                    b.HasKey("TrainId", "StationId");
-
-                    b.HasIndex("StationId");
-
-                    b.ToTable("trainInStationTime");
                 });
 
             modelBuilder.Entity("Entites.Payment", b =>
@@ -557,25 +542,6 @@ namespace TraineAPI.Migrations
                     b.Navigation("Admin");
                 });
 
-            modelBuilder.Entity("Entites.Models.TrainInStationTime", b =>
-                {
-                    b.HasOne("Entites.Station", "Station")
-                        .WithMany("trainInStationTimes")
-                        .HasForeignKey("StationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entites.Train", "Train")
-                        .WithMany("trainInStationTimes")
-                        .HasForeignKey("TrainId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Station");
-
-                    b.Navigation("Train");
-                });
-
             modelBuilder.Entity("Entites.Payment", b =>
                 {
                     b.HasOne("Entites.User", "User")
@@ -691,8 +657,6 @@ namespace TraineAPI.Migrations
             modelBuilder.Entity("Entites.Station", b =>
                 {
                     b.Navigation("Tickets");
-
-                    b.Navigation("trainInStationTimes");
                 });
 
             modelBuilder.Entity("Entites.Train", b =>
@@ -700,8 +664,6 @@ namespace TraineAPI.Migrations
                     b.Navigation("liveLocations");
 
                     b.Navigation("tickets");
-
-                    b.Navigation("trainInStationTimes");
 
                     b.Navigation("users");
                 });

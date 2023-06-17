@@ -22,6 +22,8 @@ namespace Repository
         private readonly Lazy<IUserRepository> _UserRepository;
         private readonly Lazy<ILiveLocationRepository> _LiveLocationRepository;
         private readonly Lazy<InewsRepository> _newsRepository;
+        private readonly Lazy<IRailwayRepository> _railwayRepository;
+        private readonly Lazy<ITrainInStationTimeRepository> _trainInStationTimeRepository;
 
         public RepositoryManegar(RepositoryContext repositoryContext)
         {
@@ -37,31 +39,25 @@ namespace Repository
             _UserRepository = new Lazy<IUserRepository>(() => new UserRepository(repositoryContext));
             _LiveLocationRepository = new Lazy<ILiveLocationRepository>(() => new LiveLocationRepository(repositoryContext));
             _newsRepository = new Lazy<InewsRepository>(() => new newsRepository(repositoryContext));
-
+            _railwayRepository = new Lazy<IRailwayRepository>(() => new RailwayRepository(repositoryContext));
+            _trainInStationTimeRepository = new Lazy<ITrainInStationTimeRepository>(() => new TrainInStationTimeRepository(repositoryContext));
         }
 
 
         public IAdminRepository Admin => _AdminRepository.Value;
         public ICommentRepository Comment => _CommentRepository.Value;
-
         public IPaymentRepository Payment => _PaymentRepository.Value;
-
         public IPostRepository Post => _PostRepository.Value;
-
         public IReportRepository Report => _ReportRepository.Value;
-
         public IStationRepository Station => _StationRepository.Value;
-
         public ITicketRepository Ticket => _TeketRepository.Value;
-
         public ITrainRepository Train => _TrainRepository.Value;
-
         public IUserRepository User => _UserRepository.Value;
-
         public ILiveLocationRepository LiveLocation => _LiveLocationRepository.Value;
-
         public InewsRepository news => _newsRepository.Value;
-
+        public IRailwayRepository railway => _railwayRepository.Value;
+        public ITrainInStationTimeRepository TrainInStationTime => _trainInStationTimeRepository.Value;
+        
         public void Save()
         {
             _repositoryContext.SaveChanges();

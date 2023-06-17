@@ -18,8 +18,9 @@ namespace Contracts
         ITrainRepository Train { get; }
         IUserRepository User { get; }
         ILiveLocationRepository LiveLocation { get; }
-
         InewsRepository news { get; }
+        IRailwayRepository railway { get; }
+        ITrainInStationTimeRepository TrainInStationTime { get; }
 
         void Save();
 

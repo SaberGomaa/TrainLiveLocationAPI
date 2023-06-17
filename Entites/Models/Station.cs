@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entites.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -18,7 +19,12 @@ namespace Entites
         public double Longitude { get; set; }
         public double Latitude { get; set; }
 
+        [ForeignKey(nameof(Railway))]
+        public int? RailwayId { get; set; }
+        public Railway? Railway { get; set; }
         public ICollection<Ticket>? Tickets { get; set; }
+
+        public ICollection<TrainInStationTime> trainInStationTimes { get; set; }
 
         //[ForeignKey(nameof(Train))]
         //public int TrainId { get; set; }

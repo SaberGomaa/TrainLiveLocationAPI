@@ -18,12 +18,17 @@ namespace Entites
         ///////
         public string? CurrentLocation { get; set; }
 
-        public ICollection<LiveLocation> liveLocations { get; set; }
 
+        [ForeignKey(nameof(Railway))]
+        public int? RailwayId { get; set; }
+        public Railway? Railway { get; set; }
+
+        
+        public ICollection<TrainInStationTime> trainInStationTimes { get; set; }
+        public ICollection<LiveLocation> liveLocations { get; set; }
         public ICollection<User>?users { get; set; }
         //public ICollection <Station>?stations { get; set; }
         public ICollection <Ticket>?tickets { get; set; }
-
 
     }
 }

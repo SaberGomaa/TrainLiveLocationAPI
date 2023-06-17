@@ -18,6 +18,12 @@ namespace TraineAPI
 
             CreateMap<AdminUpdateDto, Admin>();
 
+            // Railway
+            CreateMap<Railway, RailwayDto>();
+
+            // TrainInStationTime 
+
+            CreateMap<TrainInStationTime, TrainInStationTimeDto>();
 
             // Comment
             CreateMap<Comment, CommentDto>();
