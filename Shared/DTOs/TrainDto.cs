@@ -17,23 +17,20 @@ namespace Shared.DTOs
         [Required(ErrorMessage = "NumOfSeat is a required field.")]
         public int NumOfSeat { get; init; }
 
-
         [Required(ErrorMessage = "NumOfTrainCars is a required field.")]
         public int NumOfTrainCars { get; init; }
         public double TrainTime { get; set; }
-
         //////
         [Required(ErrorMessage = "Conductor is a required field.")]
         public string? Conductor { get; init; }
-
         public string TrainNumber { get; set; }
-
 
         [Required(ErrorMessage = "Driver is a required field.")]
         public string? Driver { get; init; }
         ///////
-       
         public string? CurrentLocation { get; init; }
+        public int? RailwayId { get; set; }
+
     }
 
     public record TrainDto(int Id, string? Degree ,string? NumOfSeat, string? NumOfTrainCars, string? Conductor, double TrainTime,  string? Driver ,string? CurrentLocation , string TrainNumber);

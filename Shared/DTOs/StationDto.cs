@@ -17,10 +17,15 @@ namespace Shared.DTOs
         public string? Description { get; init; }
         public int Position { get; set; }
 
-        [Required(ErrorMessage = "TrainId is a required field.")]
-        [Range(0,10000)]
+        [Required]
+        public int? NextStationPostion { get; set; }
+
         public double Longitude { get; set; }
+
         public double Latitude { get; set; }
+        public int? RailwayId { get; set; }
+
+
     }
 
     public record StationDto(int Id, string? Name, string? NextStation,int Position, string? Description, double Longitude, double Latitude);

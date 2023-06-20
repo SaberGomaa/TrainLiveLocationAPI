@@ -12,12 +12,10 @@ namespace Repository
     {
         public CommentRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
-
         }
 
         public void CreateComment(Comment comment) =>
             Create(comment);
-
         public void DeleteComment(Comment comment) =>
             Delete(comment);
         public IEnumerable<Comment> GetAllComments()=>

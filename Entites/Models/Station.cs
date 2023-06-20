@@ -14,6 +14,7 @@ namespace Entites
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? NextStation { get; set; }
+        public int? NextStationPostion { get; set; }
         public string? Description { get; set; }
         public int Position { get; set; }
         public double Longitude { get; set; }
