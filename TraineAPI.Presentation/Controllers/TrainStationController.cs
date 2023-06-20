@@ -40,6 +40,20 @@ namespace TraineAPI.Presentation.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        public IActionResult UpdateTimeForStation(int TrainId, int StationId , TrainInStationTimeDto trainTime)
+        {
+            var r = _mapper.Map<TrainInStationTime>(trainTime);
+            if (TrainId == r.TrainId && StationId == r.StationId)
+            {
+                _repository.TrainInStationTime.UpdateTrainInStationTime(r);
+                _repository.Save();
+                return Ok();
+            }
+            else
+                return BadRequest("Not Matched Data");
+        }
+
         [HttpDelete]
         public IActionResult DeleteTimeForStation(int TrainId , int StationId)
         {

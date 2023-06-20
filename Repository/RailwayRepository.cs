@@ -26,9 +26,6 @@ namespace Repository
         public Railway GetRailwayById(int Id)=>
             FindByCondition(c=>c.Id.Equals(Id)).FirstOrDefault();
 
-        public void UpdateRailway(Railway railway)
-        {
-            throw new NotImplementedException();
-        }
+        public void UpdateRailway(Railway railway)=> Update(railway);
     }
 }

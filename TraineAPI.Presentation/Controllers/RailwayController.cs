@@ -53,6 +53,21 @@ namespace TraineAPI.Presentation.Controllers
                 return BadRequest();
         }
 
+        [HttpPut]
+        public IActionResult UpdateRailway(int id ,[FromBody] ReturnedRailwayDto railway) 
+        {
+            var r = _repository.railway.GetRailwayById(id);
+            var rail = _mapper.Map(railway , r);
+
+            if(r.Id == rail.Id)
+            {
+                _repository.railway.UpdateRailway(rail);
+                _repository.Save();
+                return Ok();
+            }
+            else return BadRequest("Not Matched Data");
+        }
+
         [HttpDelete]
         [Route("{id:int}" , Name = "DeleteRailway")]
         public IActionResult DeleteRailway(int id)

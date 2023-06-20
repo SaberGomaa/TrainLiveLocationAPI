@@ -21,6 +21,7 @@ namespace TraineAPI
             // Railway
             CreateMap<Railway, RailwayDto>();
             CreateMap<Railway, ReturnedRailwayDto>();
+            CreateMap<ReturnedRailwayDto,Railway>();
             CreateMap<RailwayDto, Railway>();
 
             // TrainInStationTime 
