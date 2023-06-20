@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Contracts;
+using Entites.Models;
 using Microsoft.AspNetCore.Mvc;
 using Shared.DTOs;
 using System;
@@ -29,7 +30,7 @@ namespace TraineAPI.Presentation.Controllers
             {
                 var result = _repository.railway.GetAllRailway();
 
-                var railways = _mapper.Map<IEnumerable<RailwayDto>>(result);
+                var railways = _mapper.Map<IEnumerable<ReturnedRailwayDto>>(result);
 
                 return Ok(railways);
             }
@@ -37,6 +38,31 @@ namespace TraineAPI.Presentation.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        [HttpPost]
+        public IActionResult CreateRailway(RailwayDto  railway)
+        {
+            if (railway != null)
+            {
+                var r = _mapper.Map<Railway>(railway);
+                _repository.railway.CreateRailway(r);
+                _repository.Save();
+                return Ok();
+            }else
+                return BadRequest();
+        }
+
+        [HttpDelete]
+        [Route("{id:int}" , Name = "DeleteRailway")]
+        public IActionResult DeleteRailway(int id)
+        {
+            
+            var r = _repository.railway.GetRailwayById(id);
+            if(r == null) return BadRequest($"Not Found Railway with id {id}");
+            _repository.railway.DeleteRailway(r);
+            _repository.Save();
+            return Ok("Railway Deleted successfuly");
         }
 
     }

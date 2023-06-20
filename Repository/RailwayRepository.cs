@@ -14,25 +14,17 @@ namespace Repository
         {
         }
 
-        public void CreateRailway(Railway railway)
-        {
-            throw new NotImplementedException();
-        }
+        public void CreateRailway(Railway railway) => Create(railway);
 
-        public void DeleteRailway(Railway railway)
-        {
-            throw new NotImplementedException();
-        }
+        public void DeleteRailway(Railway railway)=>Delete(railway);
 
         public IEnumerable<Railway> GetAllRailway()=>
             FindAll()
             .OrderBy(c=>c.Id)
             .ToList();
 
-        public Railway GetRailwayById(int Id)
-        {
-            throw new NotImplementedException();
-        }
+        public Railway GetRailwayById(int Id)=>
+            FindByCondition(c=>c.Id.Equals(Id)).FirstOrDefault();
 
         public void UpdateRailway(Railway railway)
         {

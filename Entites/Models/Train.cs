@@ -23,7 +23,6 @@ namespace Entites
         public int? RailwayId { get; set; }
         public Railway? Railway { get; set; }
 
-        
         public ICollection<TrainInStationTime> trainInStationTimes { get; set; }
         public ICollection<LiveLocation> liveLocations { get; set; }
         public ICollection<User>?users { get; set; }
