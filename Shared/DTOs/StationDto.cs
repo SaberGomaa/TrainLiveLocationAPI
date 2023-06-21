@@ -25,10 +25,9 @@ namespace Shared.DTOs
         public double Latitude { get; set; }
         public int? RailwayId { get; set; }
 
-
     }
 
-    public record StationDto(int Id, string? Name, string? NextStation,int Position, string? Description, double Longitude, double Latitude);
+    public record StationDto(int Id, string? Name, string? NextStation,int Position, string? Description, double Longitude, double Latitude, int RailwayId);
     public record StatioForOneTrainDto(int Id, string? Name, string? NextStation, int Position, string? Description, int TrainId, double Longitude, double Latitude);
     public record StationForUpdateDto: StationForManubalitaion;
     public record StationForCreateDto : StationForManubalitaion;

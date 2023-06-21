@@ -33,7 +33,7 @@ namespace Shared.DTOs
 
     }
 
-    public record TrainDto(int Id, string? Degree ,string? NumOfSeat, string? NumOfTrainCars, string? Conductor, double TrainTime,  string? Driver ,string? CurrentLocation , string TrainNumber);
+    public record TrainDto(int Id, string? Degree ,string? NumOfSeat, string? NumOfTrainCars, string? Conductor, double TrainTime,  string? Driver ,string? CurrentLocation , string TrainNumber , int RailwayId);
     public record ConductorDto(int Id,string? Conductor);
     public record DreiverDto(int Id, string? Driver);
     
