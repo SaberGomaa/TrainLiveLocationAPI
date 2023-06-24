@@ -53,6 +53,13 @@ namespace TraineAPI.Presentation.Controllers
             return Ok(trainDTO);
         }
 
+        [HttpGet("{id:int}", Name = "GetTrainsInRailway")]
+        public IActionResult GetTrainsInRailway(int id)
+        {
+            var Trains = _repository.Train.GetAllTrain().Where(c=>c.RailwayId.Equals(id));
+            var trainDTO = _mapper.Map<IEnumerable<TrainDto>>(Trains);
+            return Ok(trainDTO);
+        }
 
 
         [HttpGet(Name = "GetTrainById")]
