@@ -3,11 +3,6 @@ using Contracts;
 using Entites;
 using Microsoft.AspNetCore.Mvc;
 using Shared.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TraineAPI.Presentation.Controllers
 {
@@ -36,7 +31,14 @@ namespace TraineAPI.Presentation.Controllers
             var StationDTO = _mapper.Map<IEnumerable<StationDto>>(Station);
             return Ok(StationDTO);
         }
-        
+
+        [HttpGet("{id:int}", Name = "GetStationsInRailway")]
+        public IActionResult GetStationsInRailway(int id)
+        {
+            var Station = _repository.Station.GetAllStations().Where(c=>c.RailwayId.Equals(id));
+            var StationDTO = _mapper.Map<IEnumerable<StationDto>>(Station);
+            return Ok(StationDTO);
+        }
 
         [HttpGet(Name = "GetStationById")]
         public IActionResult GetStationById(int Id)
