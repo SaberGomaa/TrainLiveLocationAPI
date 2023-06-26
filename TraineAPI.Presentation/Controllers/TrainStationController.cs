@@ -3,6 +3,7 @@ using Contracts;
 using Entites.Models;
 using Microsoft.AspNetCore.Mvc;
 using Shared.DTOs;
+using System;
 
 namespace TraineAPI.Presentation.Controllers
 {
@@ -35,6 +36,8 @@ namespace TraineAPI.Presentation.Controllers
         public IActionResult CreateTrainTimeForStation(TrainInStationTimeDto trainTime)
         {
             var t = _mapper.Map<TrainInStationTime>(trainTime);
+            double time = Math.Round(t.TrainTime, 2);
+            t.TrainTime = time;
             _repository.TrainInStationTime.CreateTrainInStationTime(t);
             _repository.Save();
             return Ok();
