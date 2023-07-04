@@ -19,6 +19,7 @@ namespace Entites
         public int Position { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
+        public bool MainStation { get; set; }
 
         [ForeignKey(nameof(Railway))]
         public int? RailwayId { get; set; }
