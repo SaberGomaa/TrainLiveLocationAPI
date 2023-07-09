@@ -33,17 +33,18 @@ namespace TraineAPI.Presentation.Controllers
             var usersInTrain = _repository.Ticket.GetAllTikets()
                 .Where(x => 
                 x.TrainId.Equals(TrainId) && x.UserJop=="Doctor" 
-                && x.TakeOffDate.Day == DateTime.Now.Day
                 && x.TakeOffDate.Year == DateTime.Now.Year 
                 && x.TakeOffDate.Month == DateTime.Now.Month)
-                .Select(x=> new {
-                    TicketId = x.Id ,
-                    userId = x.UserId ,
-                    Jop=x.UserJop, 
-                    UserName = x.UserName ,
-                    UserEmail = x.UserEmail ,
-                    UserPhone = x.UserPhone ,
-                    ArrivalStationID= x.StationArrivalId    
+                .GroupBy(x => x.UserId)
+                .Select(g => new {
+                    TicketId = g.First().Id,
+                    userId = g.Key,
+                    Jop = g.First().UserJop,
+                    UserName = g.First().UserName,
+                    UserEmail = g.First().UserEmail,
+                    UserPhone = g.First().UserPhone,
+                    TakeOffStation = g.First().TakeOffStation,
+                    ArrivalStation = g.First().ArrivalStation
                 });
 
             return Ok(usersInTrain);
@@ -55,7 +56,6 @@ namespace TraineAPI.Presentation.Controllers
             var usersInTrain = _repository.Ticket.GetAllTikets()
                 .Where(x =>
                 x.TrainId.Equals(TrainId)
-                && x.TakeOffDate.Day == DateTime.Now.Day
                 && x.TakeOffDate.Year == DateTime.Now.Year
                 && x.TakeOffDate.Month == DateTime.Now.Month)
                 .Select(x => new {
