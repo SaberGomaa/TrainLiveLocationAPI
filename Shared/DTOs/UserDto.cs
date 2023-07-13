@@ -46,6 +46,7 @@ namespace Shared.DTOs
     public record userDto(int Id, string Name, string Email, string Phone, string Password, string Jop, string Address, string Gender, string BirthDate, string? TokenForNotifications, string Role);
     public record userloginDTO(string Name);
     public record userTokenDTO(int Id , string TokenForNotifications);
+    public record userPhoneTokenDTO(string Phone , string TokenForNotifications);
     public record DoctorDTO(int Id, string Name, string Email, string Phone);
     public record UserCreationDto : UserForManipulationDto;
     public record UserUpdateDto : UserForManipulationDto;

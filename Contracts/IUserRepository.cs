@@ -12,6 +12,7 @@ namespace Contracts
         IEnumerable<User> GetAllUser();
         User? GetUserByPhone(string Phone);
         User? GetUserById(int userID);
+        User? GetUserTokenByPhone(string Phone);
         User? CheckEmail(string Email);
         User? CheckPassword( string Password);
         User? CheckPhone(string Phone);

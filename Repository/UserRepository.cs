@@ -62,6 +62,9 @@ namespace Repository
             Update(user);
         }
 
-        
+        public User? GetUserTokenByPhone(string Phone)
+        {
+            return FindByCondition(c => c.Phone.Equals(Phone)).SingleOrDefault();
+        }
     }
 }

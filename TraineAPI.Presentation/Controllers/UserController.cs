@@ -66,6 +66,21 @@ namespace TraineAPI.Presentation.Controllers
             }
         }
 
+        [HttpGet(Name = "GetUserTokenByPhone")]
+        public IActionResult GetUserTokenByPhone(string Phone)
+        {
+            var User = _repository.User.GetUserByPhone(Phone);
+            if (User == null)
+            {
+                return NotFound($"there is no user with Phone {Phone}");
+            }
+            else
+            {
+                var userDTO = _mapper.Map<userPhoneTokenDTO>(User);
+
+                return Ok(userDTO);
+            }
+        }
 
         [HttpGet(Name = "GetTokenById")]
         public IActionResult GetTokenById(int Id)

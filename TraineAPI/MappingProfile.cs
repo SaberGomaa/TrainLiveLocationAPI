@@ -96,6 +96,7 @@ namespace TraineAPI
             //user
             CreateMap<User, userDto>();
             CreateMap<User, userTokenDTO>();
+            CreateMap<User, userPhoneTokenDTO>();
             CreateMap<User, DoctorDTO>();
             CreateMap<User, userloginDTO>();
             CreateMap<UserCreationDto, User>();
